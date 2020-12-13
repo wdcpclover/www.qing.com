@@ -1,0 +1,25 @@
+<div class="mar_t_30 mar_b_30" id="nleft_content">
+  
+    <div class="nleft_title fb f16 color1">产品中心</div>
+    <div class="nleft_boder">
+      
+        <ul class="chanpin_logo">
+
+          {volist name="$leftProductData" id="vo"}
+          <li><a href="{:url('index/index/article',array('id'=>$vo.id))}"><img src="{$vo.thumb}"></a></li>
+          {/volist}
+        </ul>
+
+    </div>
+    <div class="nleft_title fb f16 mar_t_20 color1">联系我们</div>
+    <div class="nleft_boder line30">
+        <div style="padding:20px 30px">
+          <div class="fb">{$web_title}</div> 
+          全国咨询热线：{$tel1}
+          <img src="/public/static/index/images/contactimg.jpg">
+        </div>
+
+    </div>
+
+
+</div>

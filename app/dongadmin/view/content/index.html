@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    {include file="public/meta"}
+
+</head>
+
+<body>
+
+
+    <div class="container">
+        {include file="public/left"}
+        <div class="right_content">
+            {include file="public/top"}
+            <div class="right_content_main">
+                <div class="right_content_main_box padding_20">
+                        <span class="layui-breadcrumb">
+                                <a href="{:url('index/index')}">首页</a>
+                                <a><cite>文档管理</cite></a>
+                            </span>
+                            <div class="mar_t_15 ">
+
+                                <a class="layui-btn " href="{:url('content/add',array('cate_id'=>$cate_id))}">+添加</a>
+                         
+                                <form class="public_search_form mar_b_30">
+                                    <input type="text" name="searchkey" autocomplete="off" class="layui-input fleft"  value="{$searchkey|default='搜索关键字'}" >
+      
+                                    <select name="cate_id" class="public_select fleft">
+                                        
+                                      <option value="">全部</option>
+                                      {volist name="categoryData" id="vo"}
+                                        <option value="{$vo.id}"
+                                              {if condition="$vo.id eq $cate_id"}
+                                        selected="" 
+                                        {/if}
+                                        ><?php echo str_repeat('-', 8*$vo['cate_level']); ?>{$vo.cate_name}</option>
+                                      {/volist}
+                                                        
+                                      </select>  
+                                    <button class="layui-btn fleft" type="submit">搜索</button>
+                                </form>
+                            </div>
+                            <div class="mar_t_15">
+                                <table class="layui-table ">
+            
+                                    <thead>
+                                      <tr>
+                                        <th>ID</th>
+                                        <th>标题</th>
+                                        <th>所属分类</th>
+                                        <th>排序序号<br><span class="tishi" style="font-weight: normal;">数字越小越靠前</span></th>
+                                        <th>发布时间</th>
+                                        <th>操作</th>
+                                      </tr> 
+                                    </thead>
+                                    <tbody>
+                                            {volist name="archivesData" id="vo"}
+                                        <tr>
+                                        <td>{$vo.id}</td>
+                                        <td>{$vo.title}</td>
+                                        <td>{$vo.cate_name}</td>
+                                        <td class="text-c listorder"><input type="number" size="4" attr-id="{$vo.id}" attr-model="archives" name="listorder" value="{$vo.listorder}" class="public_listorder"></td>
+                                        <td>{$vo.time|date="Y-m-d H:i"}</td>
+                                        <td>
+                                          <a href="{:url('content/edit',array('id'=>$vo.id))}" title="修改"><i class="layui-icon layui-icon-edit"></i></a>
+                                          <a onClick="public_del('{:url('content/delect', ['id'=>$vo.id])}')" href="javascript:;"  title="删除"><i class="layui-icon layui-icon-delete"></i></a>
+                                        </td>
+                                      </tr>
+                                      {/volist}
+            
+                                    </tbody>
+                                  </table>
+                                  {$archivesData|raw}
+                            </div>
+                           
+                </div>
+                
+
+            </div>
+        </div>
+    </div>
+    {include file="public/foot"}
+
+
+
+
+</body>
+
+</html>

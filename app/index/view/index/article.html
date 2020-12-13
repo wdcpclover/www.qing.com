@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{$archivesData.title}</title>
+<meta name="keywords" content="{$archivesData.keywords}"/>
+<meta name="description" content="{$archivesData.description}"/>
+
+<link href="/public/static/index/css/style.css" rel="stylesheet" type="text/css">
+<link href="/public/static/index/css/qing.css" rel="stylesheet" type="text/css">
+<link href="/public/static/index/css/qingstyle.css" rel="stylesheet" type="text/css">
+<link href="/public/static/index/css/layui.css" rel="stylesheet" type="text/css">
+<script src="/public/static/index/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+<script src="/public/static/index/js/js.js" type="text/javascript"></script>
+</head>
+<body>
+  {include file="public/head"}
+  <div class="solutionbg" style="background: url({php}$categoryData['thumb']=str_replace('\\','/',$categoryData['thumb']);echo $categoryData['thumb'];{/php}) no-repeat center center; width: 100%;height: 348px"></div>
+  <div class="positionbg">
+    
+      <div class="layui-container">  
+
+        <img src="/public/static/index/images/home.jpg">&nbsp;当前位置：<a href='/'>首页</a> > {$categoryData.cate_name} > 
+
+      </div>
+
+  </div>
+
+  <div class="layui-container"> 
+
+          
+          {include file="public/left"}
+          
+          <div class="mar_t_30 mar_b_30" id="nright_content">
+
+            <div class="wenzhang_title">{$archivesData.title}</div>
+            <div class="wenzhang_time">时间：{$archivesData.time|date='Y-m-d'}  发布：<a href="/" style="color: #aaa;">重庆大力电子科技有限公司</a></div>
+            <div class="wenzhang_content">{$archivesData.content|raw}</div>
+
+          </div>
+
+
+
+  </div>
+
+  {include file="public/foot"}
+</div>
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    {include file="public/meta"}
+
+</head>
+
+<body>
+
+
+    <div class="container">
+        {include file="public/left"}
+        <div class="right_content">
+            {include file="public/top"}
+            <div class="right_content_main">
+                <div class="right_content_main_box padding_20">
+                        <span class="layui-breadcrumb">
+                                <a href="{:url('index/index')}">首页</a>
+                                <a><cite>友情链接</cite></a>
+                            </span>
+                            <p><a class="layui-btn mar_t_15" href="{:url('flink/add')}">+添加</a></p>
+                            <div class="mar_t_15">
+                                <table class="layui-table ">
+            
+                                    <thead>
+                                      <tr>
+                                        <th>ID</th>
+                                        <th>名称</th>
+                                        <th>链接</th>
+                                        <th>操作</th>
+                                      </tr> 
+                                    </thead>
+                                    <tbody>
+                                            {volist name="flinkData" id="vo"}
+                                        <tr>
+                                        <td>{$vo.id}</td>
+                                        <td>{$vo.name}</td>
+                                        <td>{$vo.url}</td>
+                                        <td>
+                                          <a href="{:url('flink/edit',array('id'=>$vo.id))}" title="修改"><i class="layui-icon layui-icon-edit"></i></a>
+                                          <a onClick="public_del('{:url('base/del', ['id'=>$vo.id,'m'=>'flink'])}')" href="javascript:;"  title="删除"><i class="layui-icon layui-icon-delete"></i></a>
+                                        </td>
+                                      </tr>
+                                      {/volist}
+                                      
+            
+                                    </tbody>
+                                  </table>
+                                  {$flinkData|raw}
+                            </div>
+                           
+                </div>
+                
+
+            </div>
+        </div>
+    </div>
+    {include file="public/foot"}
+
+
+
+
+</body>
+
+</html>

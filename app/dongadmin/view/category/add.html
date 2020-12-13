@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  {include file="public/meta"}
+
+</head>
+
+<body>
+
+
+  <div class="container">
+    {include file="public/left"}
+    <div class="right_content">
+      {include file="public/top"}
+      <div class="right_content_main">
+        <div class="right_content_main_box padding_20">
+          <form class="layui-form" action="" method="post">
+            <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+              <ul class="layui-tab-title">
+                <li class="layui-this">基本信息</li>
+                <li>SEO信息</li>
+                <li>栏目内容</li>
+              </ul>
+
+              <div class="layui-tab-content mar_t_30">
+                <div class="layui-tab-item layui-show">
+                  <div class="layui-form-item">
+                    <label class="layui-form-label">分类名称</label>
+                    <div class="layui-input-block">
+                      <input type="text" name="cate_name" class="layui-input">
+                    </div>
+                  </div>
+                
+                  <div class="layui-form-item">
+                    <label class="layui-form-label">上级栏目</label>
+                    <div class="layui-input-block">
+                      <select name="parent_id" class="select">
+
+                        <option value="0">顶级分类</option>
+
+                        {volist name="categoryTree" id="vo"}
+
+                        <option value="{$vo.id}"><?php echo str_repeat('-', 8*$vo['cate_level']); ?>{$vo.cate_name}
+                          </option> {/volist} 
+                      </select> 
+                    </div> 
+                  </div> 
+
+
+                    <div class="layui-form-item">
+                      <label class="layui-form-label">外部链接</label>
+                      <div class="layui-input-block">
+                        <input type="text" name="link" class="layui-input">
+                      </div>
+                    </div>
+                    <div class="layui-form-item">
+                      <label class="layui-form-label">图片上传</label>
+                      <div class="layui-input-block">
+                        <button type="button" class="layui-btn" id="test1">
+                          <i class="layui-icon">&#xe67c;</i>上传图片
+                        </button>
+                        <div class="public_thumb_box" attr-model="category">
+                            <input type="text" name="thumb" value="" class="public_thumb_input layui-input" style="width: 500px">
+                            <img src="" class="public_thumb" width="150">
+                            <div class="delete_img"><i class="layui-icon layui-icon-delete"></i></div>
+                          
+                        </div>
+
+                      </div>
+                    </div>
+                    
+                  </div>
+
+                  <div class="layui-tab-item">
+
+
+                    <div class="layui-form-item">
+                      <label class="layui-form-label">SEO标题</label>
+                      <div class="layui-input-block">
+                        <input type="text" name="seo_title" class="layui-input">
+                      </div>
+                    </div>
+                    <div class="layui-form-item">
+                      <label class="layui-form-label">SEO关键词</label>
+                      <div class="layui-input-block">
+                        <input type="text" name="seo_keywords" class="layui-input">
+                      </div>
+                    </div>
+                    <div class="layui-form-item">
+                      <label class="layui-form-label">SEO描述</label>
+                      <div class="layui-input-block">
+                        <textarea name="seo_description" class="layui-textarea"></textarea>
+                      </div>
+                    </div>
+
+
+                  </div>
+
+                  <div class="layui-tab-item">
+                      <script id="editor" type="text/plain" name="content" style="width:100%;height:300px;"></script>
+                  </div>
+
+                </div>
+
+                <div class="layui-form-item text_center">
+                  <button class="layui-btn" type="submit">立即提交</button>
+                </div>
+              </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {include file="public/foot"}
+
+  <script>
+    var ue = UE.getEditor('editor');
+  </script>
+
+
+</body>
+
+</html>

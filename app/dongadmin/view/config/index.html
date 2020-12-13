@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    {include file="public/meta"}
+
+</head>
+
+<body>
+
+
+    <div class="container">
+        {include file="public/left"}
+        <div class="right_content">
+            {include file="public/top"}
+            <div class="right_content_main">
+                <div class="right_content_main_box padding_20">
+                <form class="layui-form config_form" action="" method="post">
+                    <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+                        <ul class="layui-tab-title">
+                            <li class="layui-this">基本设置</li>
+                            <li>联系方式</li>
+                        </ul>
+
+                        <div class="layui-tab-content mar_t_30">
+                            <div class="layui-tab-item layui-show">
+
+                                {volist name="confData1" id="vo"}
+
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">{$vo.cname}：</label>
+                                    <div class="layui-input-block">
+                                        {if condition="$vo.field_type eq 1"}
+                                        <input type="text" name="{$vo.ename}" 
+                                            autocomplete="off" class="layui-input" value="{$vo.value}">
+                                        {/if}
+                                        {if condition="$vo.field_type eq 2"}
+                                        <textarea name="{$vo.ename}" class="layui-textarea">{$vo.value}</textarea>
+                                        {/if}
+                                    </div>
+                                </div>
+
+
+                                {/volist}
+                                
+
+                            </div>
+                            <div class="layui-tab-item">
+                                {volist name="confData2" id="vo"}
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">{$vo.cname}：</label>
+                                    <div class="layui-input-block">
+                                        {if condition="$vo.field_type eq 1"}
+                                        <input type="text" name="{$vo.ename}" 
+                                            autocomplete="off" class="layui-input" value="{$vo.value}">
+                                        {/if}
+
+                                    </div>
+                                </div>
+                                {/volist}
+                                
+                            </div>
+                        </div>
+                        
+                        <div class="layui-form-item text_center">
+                                <button class="layui-btn" type="submit" >立即提交</button>
+                            </div>
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {include file="public/foot"}
+
+
+
+
+</body>
+
+</html>

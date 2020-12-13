@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    {include file="public/meta"}
+
+</head>
+
+<body>
+
+
+    <div class="container">
+        {include file="public/left"}
+        <div class="right_content">
+            {include file="public/top"}
+            <div class="right_content_main">
+                <div class="right_content_main_box padding_20">
+                        <span class="layui-breadcrumb">
+                                <a href="{:url('index/index')}">首页</a>
+                                <a><cite>广告列表</cite></a>
+                            </span>
+                            <div class="mar_t_15">
+                                <a class="layui-btn " href="{:url('ad/add')}">+添加</a>
+                                <form class="public_search_form ">
+                                    <!-- <input type="text" name="webname" autocomplete="off" class="layui-input fleft" placeholder="搜索关键字"> -->
+      
+                                    <select name="type_id" class="public_select fleft">
+                                        
+                                        <option value="">全部</option>
+                                        {volist name="typeData" id="vo"}
+                                        <option value="{$vo.id}" {if condition="$vo.id eq $type_id"} selected="" {/if}>{$vo.name}</option>
+                                        {/volist}
+                                                        
+                                      </select>  
+                                    <button class="layui-btn fleft" type="submit">搜索</button>
+                                </form>
+                            </div>
+                            <div class="mar_t_15">
+                                <table class="layui-table ">
+            
+                                    <thead>
+                                      <tr>
+                                        <th>ID</th>
+                                        <th>名称</th>
+                                        <th>图片</th>
+                                        <th>所属分类</th>
+                                        <th>排序</th>
+                                        <th>状态</th>
+                                        <th>操作</th>
+                                      </tr> 
+                                    </thead>
+                                    <tbody>
+                                            {volist name="adData" id="vo"}
+                                        <tr>
+                                        <td>{$vo.id}</td>
+                                        <td>{$vo.title}</td>
+                                        <td><img src="{$vo.thumb}" width="100"></td>
+                                        <td>{$vo.name}</td>
+                                        <td class="text-c listorder"><input type="number" size="4" attr-id="{$vo.id}" attr-model="ad" name="listorder" value="{$vo.listorder}" class="public_listorder"></td>
+                                        <td class="td-status status">
+                                            
+                                            {if condition="$vo.status eq 1"}
+                                            <a href="{:url('base/status',array('id'=>$vo.id,'model'=>'ad','status'=>0))}"><span class='label label-success radius'>正常</span></a>
+                                            {else/}
+                                            <a href="{:url('base/status',array('id'=>$vo.id,'model'=>'ad','status'=>1))}"><span class='label label-danger radius'>停用</span></a>
+                                            {/if}
+                                        
+                                        </td>
+                                        <td>
+                                          <a href="{:url('ad/edit',array('id'=>$vo.id))}" title="修改"><i class="layui-icon layui-icon-edit"></i></a>
+                                          <a onClick="public_del('{:url('ad/del', ['id'=>$vo.id])}')" href="javascript:;"  title="删除"><i class="layui-icon layui-icon-delete"></i></a>
+                                        </td>
+                                      </tr>
+                                      {/volist}
+            
+                                    </tbody>
+                                  </table>
+                                  {$adData|raw}
+                            </div>
+                           
+                </div>
+                
+
+            </div>
+        </div>
+    </div>
+    {include file="public/foot"}
+
+
+
+
+</body>
+
+</html>

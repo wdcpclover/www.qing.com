@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    {include file="public/meta"}
+
+</head>
+
+<body>
+
+
+    <div class="container">
+        {include file="public/left"}
+        <div class="right_content">
+            {include file="public/top"}
+            <div class="right_content_main">
+                <div class="right_content_main_box padding_20">
+                        <span class="layui-breadcrumb">
+                                <a href="{:url('index/index')}">首页</a>
+                                <a href="{:url('flink/index')}">友情链接</a>
+                                <a><cite>添加</cite></a>
+                            </span>
+                            <form class="layui-form mar_t_30" action="" method="post">
+                                    <div class="layui-form-item">
+                                            <label class="layui-form-label">名称</label>
+                                            <div class="layui-input-block">
+                                              <input type="text" name="name" required  lay-verify="required" placeholder="请输入友情链接名称" autocomplete="off" class="layui-input">
+                                            </div>
+                                          </div>
+                                          <div class="layui-form-item">
+                                                <label class="layui-form-label">链接</label>
+                                                <div class="layui-input-block">
+                                                  <input type="text" name="url" required  lay-verify="required" placeholder="请输入友情链接链接" autocomplete="off" class="layui-input">
+                                                </div>
+                                              </div>
+                                              <div class="layui-form-item text_center">
+                                                    <button class="layui-btn" type="submit">立即提交</button>
+                                                  </div>
+           
+                            </form>
+                </div>
+                
+
+            </div>
+        </div>
+    </div>
+    {include file="public/foot"}
+
+
+
+
+</body>
+
+</html>

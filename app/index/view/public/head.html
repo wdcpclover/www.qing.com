@@ -1,0 +1,46 @@
+<div class="wrap">
+
+    <div class="header_w">
+    <div class="header">
+      <div class="logo"><a href="/"><img src="/public/static/index/images/logo.png" /></a></div>  
+      <div class="h_txt">
+        专业拨动开关轻触开关USB插座生产厂家
+      </div>
+      <div class="h_tel"><span class="tel_tit">全国服务热线</span><span class="tel_num">{$tel1}</span></div>
+      <div class="btn_menu"></div>
+      <div class="clear"></div>
+    </div>
+</div>
+
+<!--手机版 导航菜单遮罩层 start-->
+<div class="mask"></div>
+  <div class="nav_w">
+  <div class="close"></div>
+  <div class="nav">
+    <ul>
+      <li  {if condition='$menu_id eq 0'}class='current'{/if}>
+        <a href="/">网站首页</a>
+      </li>
+      <li {if condition='$menu_id eq 1'}class='current'{/if}>
+        <a href="{:url('index/index/company')}">企业简介</a>
+        
+      </li>
+      <li>
+        <a href="{:url('index/index/product')}">产品中心</a>
+        
+      </li>
+      <li>
+        <a href="{:url('index/index/list',array('id'=>5))}">解决方案</a>
+        
+      </li>
+      <li>
+        <a href="{:url('index/index/list',array('id'=>6))}">资讯动态</a>
+        
+      </li>
+       <li {if condition='$menu_id eq 7'}class='current'{/if}>
+        <a href="{:url('index/index/contact')}">联系我们</a>
+      </li> 
+      </ul>
+      <div class="clear"></div>
+  </div>
+  </div> 

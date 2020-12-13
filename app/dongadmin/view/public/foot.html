@@ -1,0 +1,115 @@
+<footer>
+    <script type="text/javascript" src="/public/static/index/js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="/public/static/index/layui/layui.js"></script>
+
+    <script type="text/javascript" src="/public/static/admin2/ueditor/1.4.3/ueditor.config.js"></script>
+    <script type="text/javascript" src="/public/static/admin2/ueditor/1.4.3/ueditor.all.min.js"> </script>
+    <script type="text/javascript" src="/public/static/admin2/ueditor/1.4.3/lang/zh-cn/zh-cn.js"></script>
+
+    <script>
+            layui.use('element', function () {
+                var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模               
+            });
+
+            layui.use('form', function(){
+            var form = layui.form;
+            
+            //监听提交
+            form.on('submit(formDemo)', function(data){
+                layer.msg(JSON.stringify(data.field));
+                return false;
+            });
+            });
+        </script>
+
+
+    <script>
+    /*-删除时候确认*/
+    function public_del(url){
+        layui.use('layer', function(){
+            var layer = layui.layer;
+            layer.confirm('确认要删除吗？',function(index){
+                window.location.href=url;
+            });
+        });
+    }
+
+
+    layui.use('upload', function () {
+      var upload = layui.upload;
+
+      //执行上传实例
+      var uploadInst = upload.render({
+        elem: '#test1' //绑定元素
+        , url: '/dongadmin/uploader/upload' //上传接口
+        , done: function (res) {
+          //上传完毕回调
+          console.log(res);
+          //path = JSON.stringify(res.path);
+          //path = path.replace("\"", "").replace("\"", "");
+          $(".public_thumb_input").val(res.path);
+          $(".public_thumb").attr("src", res.path);
+          $(".public_thumb_box").css("display", "block");
+        }
+        , error: function () {
+          //请求异常回调
+        }
+      });
+    });
+
+
+    //实时删除图片
+    $(".delete_img").click(function(){
+        var path=$(this).parent().children(".public_thumb_input").val();
+        var url="/dongadmin/uploader/delete_img";
+        var model = $(this).parent().attr('attr-model');//编辑默认删除图片
+        var id=$("input[name='id']").val();//编辑默认删除图片
+        postData = {'path':path,'model':model,'id':id};
+        $.post(url,postData,function(result){
+          result=JSON.parse(result);
+          if(result.status==1){
+            $(".public_thumb_input").val("");
+            $(".public_thumb").attr("src", "");
+            $(".public_thumb_box").css("display", "none");
+            layui.use('layer', function(){
+              var layer = layui.layer;
+              layer.msg('已经删除成功！');
+            }); 
+          }
+        });
+    });
+
+    //排序
+    $('.listorder input').blur(function() {
+    // 编写我们的抛送的逻辑
+    //获取主键id
+    var id = $(this).attr('attr-id');
+    var model=$(this).attr('attr-model');
+    // 获取排序的值
+    var listorder = $(this).val();
+    if(!listorder){
+      return;
+    }
+    var postData = {
+
+        'id' : id,
+        'model':model,
+        'listorder':listorder,
+    };
+
+    var url = "/dongadmin/base/listorder";
+    // 抛送http
+    $.post(url, postData, function(result){
+        // 逻辑
+        if(result.code == 1) {
+            location.href=result.data;
+        }else {
+            alert(result.msg);
+        }
+    },"json");
+
+
+});
+
+    </script>
+</footer>

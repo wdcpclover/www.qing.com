@@ -1,0 +1,37 @@
+ <div class="left_content">
+            <div class="login text_center ">
+                <a class="display_inline_block" href="{:url('/dongadmin/index/index')}">后台管理系统</a>
+                <span class="display_inline_block">V0.0.1</span>
+            </div>
+            <ul class="layui-nav layui-nav-tree layui-inline" lay-filter="demo" style="margin-right: 10px; margin-top: 10px">
+                    <li class="layui-nav-item {if condition="$left_menu eq 1"}layui-nav-itemed{/if}">
+                    <a href="javascript:;"><i class="iconfont icon-neirong"></i> 栏目内容</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="{:url('category/index')}">栏目管理</a></dd>
+                        <dd><a href="{:url('content/index')}">文档管理</a></dd>
+
+                    </dl>
+                </li>
+                <li class="layui-nav-item {if condition="$left_menu eq 2"}layui-nav-itemed{/if}">
+                    <a href="javascript:;"><i class="iconfont icon-tupian"></i> 广告管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="{:url('ad/index')}">广告管理</a></dd>
+                        <dd><a href="{:url('ad/adtype')}">广告分组</a></dd>
+                    </dl>
+                </li>
+
+                <li class="layui-nav-item {if condition="$left_menu eq 3"}layui-nav-itemed{/if}">
+                        <a href="javascript:;"><i class="iconfont icon-shezhi"></i> 系统管理</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="{:url('config/index')}">系统参数</a></dd>
+                            <dd><a href="{:url('flink/index')}">友情链接</a></dd>
+                            <dd><a href="{:url('config/del_cache')}">清空缓存</a></dd>
+                            <dd><a href="{:url('config/edit_password')}">修改密码</a></dd>
+                        </dl>
+                    </li>
+            </ul>
+
+
+
+
+        </div>

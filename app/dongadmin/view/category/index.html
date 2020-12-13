@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    {include file="public/meta"}
+
+</head>
+
+<body>
+
+
+    <div class="container">
+        {include file="public/left"}
+        <div class="right_content">
+            {include file="public/top"}
+            <div class="right_content_main">
+                <div class="right_content_main_box padding_20">
+                        <span class="layui-breadcrumb">
+                                <a href="{:url('index/index')}">首页</a>
+                                <a><cite>栏目分类列表</cite></a>
+                            </span>
+                            <div class="mar_t_15">
+                                <a class="layui-btn " href="{:url('category/add')}">+添加分类</a>
+
+                            </div>
+                            <div class="mar_t_15">
+                                <table class="layui-table ">
+                                   
+                                    <tbody>
+                                            {volist name="categoryTree" id="vo"}
+                                        <tr id="{$vo.id}" parentid="{$vo.parent_id}">
+                                        <td align="center"><span class="open">+</span></td>
+                                        <td>{$vo.id}</td>
+                                        <td style="text-align: left;{if condition='$vo.cate_level eq 0'}font-weight:bold;{/if}">
+
+                                          <a href="{:url('content/index',array('cate_id'=>$vo.id))}"><?php echo str_repeat('-', 8*$vo['cate_level']); ?>{$vo.cate_name}</a>
+                            
+                                      </td>
+                                      <td class="text-c listorder">
+                                          <input size="10" attr-id="{$vo.id}" attr-model="category" class="public_listorder" name="listorder"  value="{$vo.listorder}"/>
+                                        </td>
+                                        <td>
+                                          <a href="{:url('category/edit',array('id'=>$vo.id))}" title="修改"><i class="layui-icon layui-icon-edit"></i></a>
+
+                                          <a onClick="public_del('{:url('category/del', ['id'=>$vo.id])}')" href="javascript:;"  title="删除"><i class="layui-icon layui-icon-delete"></i></a>
+                                        </td>
+                                      </tr>
+                                      {/volist}
+            
+                                    </tbody>
+                                  </table>
+                            </div>
+                           
+                </div>
+                
+
+            </div>
+        </div>
+    </div>
+    {include file="public/foot"}
+
+    <script>
+        //栏目伸缩状态js
+           $('tr[parentid!=0]').hide();
+           $('.open').click(function(){
+               var id=$(this).parents('tr').attr('id');
+               if($(this).text()=='+'){
+                   $(this).text('-');
+                   $('tr[parentid='+id+']').show();
+               }else{
+                   $(this).text('+');
+                   $('tr[parentid='+id+']').hide();
+               }
+           });
+       </script>
+
+
+</body>
+
+</html>

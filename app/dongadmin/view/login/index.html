@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+
+    <meta name="viewport"
+        content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>DongAdmin-登录</title>
+
+    <meta name="description" content="" />
+
+    <meta name="keywords" content="" />
+
+    <link rel="stylesheet" type="text/css" href="/public/static/admin2/css/admin.css" />
+
+    <link rel="stylesheet" type="text/css" href="/public/static/index/layui/css/layui.css" />
+
+
+</head>
+
+<body style="background: #fff">
+
+    <div class="layui-container">
+        
+        <form class="layui-form login_form" action="" method="post">
+                <h2 class="text_center mar_b_30">后台登录</h2>
+            <div class="layui-form-item">
+                    <input type="text" name="username" required lay-verify="required" placeholder="请输入用户名"
+                    autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-item">
+                    <input type="password" name="password" required lay-verify="required" placeholder="请输入密码"
+                    autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-item">
+                        <input type="text" name="verifycode" required lay-verify="required" placeholder="请输入两位验证码"
+                        autocomplete="off" class="layui-input fleft" style="width: 200px">{:captcha_img()}
+                    </div>
+            <div class="layui-form-item text_center mar_t_30">
+                    <button class="layui-btn" type="submit">立即提交</button>
+            </div>
+        </form>
+
+        <script>
+            //Demo
+            layui.use('form', function () {
+                var form = layui.form;
+            });
+        </script>
+    </div>
+
+    {include file="public/foot"}
+
+
+</body>
+
+</html>
